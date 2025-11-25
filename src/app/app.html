@@ -1,0 +1,98 @@
+<table>
+    <tr>
+      <th colspan="2">
+        Add Student Information
+      </th>
+    </tr>
+    <tr>
+        <th>Student ID</th>
+        <td>
+            <input type="text" [(ngModel)]="studentData.studNumber">
+        </td>
+    </tr>
+    <tr>
+        <th>First Name</th>
+        <td>
+            <input type="text" [(ngModel)]="studentData.studFname">
+        </td>
+    </tr>
+    <tr>
+        <th>Middle Name</th>
+        <td>
+            <input type="text" [(ngModel)]="studentData.studMname">
+        </td>
+    </tr>
+    <tr>
+        <th>Last Name</th>
+        <td>
+            <input type="text" [(ngModel)]="studentData.studLname">
+        </td>
+    </tr>
+    <tr>
+        <th>School</th>
+        <td>
+            <select (change)="filterPrograms($event)" [(ngModel)]="studentData.studCollID">
+                <option value="" selected>-- Select a School --</option>
+                @for(school of schools; track school.schoolID){
+                  <option value="{{ school.schoolID }}">{{ school.schoolShortName + " - " + school.schoolFullName }}</option>
+                }
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>Program</th>
+        <td>
+            <select [disabled]="disabledProgram" [(ngModel)]="studentData.studProgID">
+                <option value="" selected>-- Select a Program --</option>
+                @for(program of filteredPrograms; track $index){
+                  <option value="{{ program.programID }}">{{ program.programShortName + " - " + program.programFullName }}</option>
+                }
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th>Year</th>
+        <td>
+            <input type="number" [(ngModel)]="studentData.studYear" min="1" max="5">
+        </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+          <button (click)="addStudentData()">Add Student Information</button>
+          <button (click)="listStudentCollection()">
+            @if(!showStudentList){
+                Show Student Listing
+            } @else {
+                Hide Student Listing
+            }
+          </button>
+      </td>
+    </tr>
+</table>
+@if(successfullyAdded){
+   <div>Student Data has been added successfully.</div>
+}
+@if(showStudentList){
+   <table>
+       <tr>
+           <th>ID</th>
+           <th>Last Name</th>
+           <th>First Name</th>
+           <th>Middle Initial</th>
+           <th>School</th>
+           <th>Program</th>
+           <th>Year</th>
+       </tr>
+       @for(student of studentCollection; track $index){
+          <tr>
+              <td>{{ student.studNumber }}</td>
+              <td>{{ student.studLname }}</td>
+              <td>{{ student.studFname }}</td>
+              <td>{{ checkMiddleName(student.studMname) }}</td>
+              <td>{{ getSchoolName(student.studCollID) }}</td>
+              <td>{{ getProgramName(student.studProgID) }}</td>
+              <td>{{ student.studYear }}</td>
+          </tr>
+       }
+   </table>
+}

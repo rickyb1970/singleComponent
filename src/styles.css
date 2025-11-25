@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  font-size: 1.4rem;
+  font-family: verdana;
+}
+
+select {
+  width: 13.89em;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+td {
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
+table:nth-child(1) tr th:nth-child(1) {
+  text-align: left;
+  width: 12em;
+}
+
+table:nth-child(1) tr td:nth-child(2) {
+  width: 12em;
+}
+
+
+table:nth-child(2) tr th {
+  text-align: left;
+}
+
+table:nth-child(2) tr td:nth-child(2),
+table:nth-child(2) tr td:nth-child(3),
+table:nth-child(2) tr td:nth-child(4) {
+  width: 5em;
+}
+
+table:nth-child(2) tr td:nth-child(5),
+table:nth-child(2) tr td:nth-child(6) {
+  max-width: 15em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+table:nth-child(2) tr td:nth-child(7) {
+  width: 3em;
+  text-align: right;
+}
