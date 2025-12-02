@@ -94,6 +94,8 @@ export class App{
    filterPrograms(event: Event): void{
        let selectedValue = Number((event.target as HTMLSelectElement ).value);
 
+      //  let selectedValue = selectedSchool;
+
        let programs = this.programs.filter(item => {
            return item.programSchooID === selectedValue;
        });

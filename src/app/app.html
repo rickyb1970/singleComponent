@@ -32,7 +32,7 @@
         <th>School</th>
         <td>
             <select (change)="filterPrograms($event)" [(ngModel)]="studentData.studCollID">
-                <option value="" selected>-- Select a School --</option>
+                <option value="" disabled selected>-- Select a School --</option>
                 @for(school of schools; track school.schoolID){
                   <option value="{{ school.schoolID }}">{{ school.schoolShortName + " - " + school.schoolFullName }}</option>
                 }
@@ -43,9 +43,9 @@
         <th>Program</th>
         <td>
             <select [disabled]="disabledProgram" [(ngModel)]="studentData.studProgID">
-                <option value="" selected>-- Select a Program --</option>
+                <option value="" disabled selected>-- Select a Program --</option>
                 @for(program of filteredPrograms; track $index){
-                  <option value="{{ program.programID }}">{{ program.programShortName + " - " + program.programFullName }}</option>
+                  <option value="{{ program.programID }}" class="option-text">{{ program.programShortName + " - " + program.programFullName }}</option>
                 }
             </select>
         </td>

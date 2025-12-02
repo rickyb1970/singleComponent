@@ -8,6 +8,10 @@ select {
   width: 13.89em;
 }
 
+.option-text {
+  font-size: 70%;
+}
+
 th {
   vertical-align: bottom;
 }
