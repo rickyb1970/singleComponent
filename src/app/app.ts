@@ -1,4 +1,4 @@
-import { Component, } from '@angular/core';
+import { Component, ElementRef, ViewChild, } from '@angular/core';
 import { Student } from './student';
 import { School } from './school';
 import { Program } from './program';
@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.css'
 })
 export class App{
+   @ViewChild('programMenu') programMenuElement!: ElementRef;
+
    title:string = '';
    studentData: Student = {
       studNumber: 0,
@@ -52,7 +54,7 @@ export class App{
    addStudentData(): void{
         if(this.validateData()){
             this.studentCollection.push(this.studentData);
-            this.displayAddedMessage();
+            // this.displayAddedMessage();
         }
         this.resetStudentData();
         console.log(this.studentCollection);
@@ -94,16 +96,24 @@ export class App{
    filterPrograms(event: Event): void{
        let selectedValue = Number((event.target as HTMLSelectElement ).value);
 
-      //  let selectedValue = selectedSchool;
-
        let programs = this.programs.filter(item => {
            return item.programSchooID === selectedValue;
        });
+
+       this.studentData.studCollID = selectedValue;
 
        this.disabledProgram = (programs.length > 0) ? false : true;
 
        this.filteredPrograms = programs;
 
+       this.programMenuElement.nativeElement.selectedIndex = 0;
+
+   }
+
+   getSelectedProgram(event: Event): void{
+       let selectedValue = Number((event.target as HTMLSelectElement).value);
+       
+       this.studentData.studProgID = selectedValue;
    }
 
    checkMiddleName(middleName: string | undefined): string{
