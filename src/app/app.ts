@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class App{
    @ViewChild('programMenu') programMenuElement!: ElementRef;
+   @ViewChild('schoolMenu') schoolMenuElement!: ElementRef;
 
    title:string = '';
    studentData: Student = {
@@ -91,6 +92,8 @@ export class App{
         this.disabledProgram = true;
         this.showStudentList = false;
         this.successfullyAdded = false;
+        this.schoolMenuElement.nativeElement.selectedIndex = 0;
+        this.programMenuElement.nativeElement.selectedIndex = 0;
    }
 
    filterPrograms(event: Event): void{

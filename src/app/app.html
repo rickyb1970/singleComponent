@@ -32,7 +32,7 @@
         <th>School</th>
         <td>
             <!-- <select (change)="filterPrograms($event)" [(ngModel)]="studentData.studCollID"> -->
-            <select (change)="filterPrograms($event)">    
+            <select #schoolMenu (change)="filterPrograms($event)">    
                 <option value="" disabled selected>-- Select a School --</option>
                 @for(school of schools; track school.schoolID){
                   <option value="{{ school.schoolID }}">{{ school.schoolShortName + " - " + school.schoolFullName }}</option>
